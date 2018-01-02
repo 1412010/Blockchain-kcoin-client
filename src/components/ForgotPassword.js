@@ -15,7 +15,7 @@ class ForgotPassword extends React.Component {
             <div className="wrapperForgotPassword">
                 <div className="card border-info mb-3" style={{ width: "30%" }}>
                     <div className="card-header text-info">
-                        <h3 className="card-title">Get a New Password</h3>
+                        <h3 className="card-title">Get a new password</h3>
                     </div>
                     <div style={{ paddingtop: 30 }} className="card-body" >
                         <Error errMsg="" />

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from "react-redux";
-import { Error, Success } from "./warnings";
-import { InputText, InputCheckbox } from "./InputField";
+import { Error, Success } from "./smaller/warnings";
+import { InputText, InputCheckbox } from "./smaller/InputField";
 
 class SignUp extends React.Component {
 

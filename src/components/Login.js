@@ -3,8 +3,8 @@ import { Link, Redirect, Route } from "react-router-dom";
 import { Field, reduxForm } from 'redux-form';
 import { connect } from "react-redux";
 
-import { Error } from "./warnings";
-import { InputText } from "./InputField";
+import { Error } from "./smaller/warnings";
+import { InputText } from "./smaller/InputField";
 import { checkAccount } from '../actions';
 
 class LogIn extends React.Component {

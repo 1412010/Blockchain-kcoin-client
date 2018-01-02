@@ -16,7 +16,8 @@ class Dashboard extends React.Component {
         this.state = {
             wallet_id: '',
             email: '',
-            balance: 0,
+            realBalance: 0,
+            availableBalance: 0,
             isLoggedIn: true,
             trans: [],
             isInSysTrans: false,
@@ -58,7 +59,7 @@ class Dashboard extends React.Component {
                                             <i className="fa fa-usd"></i>
                                             </h2>
                                             <div className="wrapperBalance">
-                                                <h1 style={{ fontSize: "500%", fontWeight: "300" }}>{myState.balance} coins</h1>
+                                                <h1 style={{ fontSize: "500%", fontWeight: "300" }}>{myState.availableBalance} kcoins</h1>
                                             </div>
                                             <h2 className="heading-bottom-top">Your transactions&nbsp;
                                             <i className="fa fa-retweet"></i>
@@ -81,7 +82,7 @@ class Dashboard extends React.Component {
                     </div>
                 </div>
 
-                {/* <!-- Modal --> */}
+                {/* <!-- Send Coin Modal --> */}
                 <div className="modal fade" id="sendModal" tabIndex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -108,6 +109,39 @@ class Dashboard extends React.Component {
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal" ref={(input) => { this.closeModal = input; }}>Cancel</button>
                                 <label htmlFor="input-form-submit" role="button" className="btn btn-primary mt-2"> Send coins</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <!-- Account Modal --> */}
+                <div className="modal fade" id="accountModal" tabIndex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">ACCOUNT INFOMATION</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <div style={{marginLeft: 50}}>
+                                    <div style={{ marginBottom: 25 }}>
+                                        Address: <span style={{fontWeight: 'bold', marginLeft: 10}}>{myState.wallet_id}</span>
+                                    </div>
+                                    <div style={{ marginBottom: 25 }}>
+                                        Email: <span style={{fontWeight: 'bold', marginLeft: 30}}>{myState.email}</span>
+                                    </div>
+                                    <div style={{ marginBottom: 25 }}>
+                                        Real balance: <span style={{fontWeight: 'bold', marginLeft: 54}}>{myState.realBalance}</span> kcoins
+                                    </div>
+                                    <div>
+                                        Available balance: <span style={{fontWeight: 'bold', marginLeft: 20}}>{myState.availableBalance}</span> kcoins
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-info" data-dismiss="modal" ref={(input) => { this.closeModal = input; }}>OK</button>
                             </div>
                         </div>
                     </div>

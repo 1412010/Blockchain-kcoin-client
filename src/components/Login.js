@@ -15,7 +15,7 @@ class LogIn extends React.Component {
             <div className="wrapperLogin">
                 <div className="card border-success mb-3" style={{ width: "30%" }}>
                     <div className="card-header text-success">
-                        <h3 className="card-title">Please Log In</h3>
+                        <h3 className="card-title">Log in</h3>
                     </div>
                     <div style={{ paddingtop: 30 }} className="card-body" >
                         <Error errMsg="" />
@@ -26,7 +26,7 @@ class LogIn extends React.Component {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fa fa-user"></i></span>
                                 </div>
-                                <Field name='email' type='email' component={InputText} placeholder='Please input your E-mail' id='email' required={true} />
+                                <Field name='email' type='email' component={InputText} placeholder='Enter your email address...' id='email' required={true} />
                             </div>
                             {/* Password */}
                             <label htmlFor="password" className="font-weight-bold">Password</label>
@@ -34,9 +34,9 @@ class LogIn extends React.Component {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fa fa-lock"></i></span>
                                 </div>
-                                <Field id="password" name='password' type='password' component={InputText} placeholder='Please input your password...' required={true} />
+                                <Field id="password" name='password' type='password' component={InputText} placeholder='Enter your password...' required={true} />
                             </div>
-                            <Link to="/signup">
+                            <Link to="/forgotpassword">
                                 &nbsp;Forgot Password?
                             </Link>
                             {/* Button sign in */}
@@ -46,7 +46,7 @@ class LogIn extends React.Component {
                             <div className="form-group">
                                 <div className="col-md-12 control">
                                     <div style={{ borderTop: 1, paddingTop: 15 }} >
-                                        Don't have an account!
+                                        Don't have an account?
                                         <Link to="/signup">
                                             &nbsp;Sign Up Here
                                         </Link>

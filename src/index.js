@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import LogIn from "./components/Login";
 import Signup from './components/Signup';
+import ForgotPassword from './components/ForgotPassword';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -20,7 +21,8 @@ ReactDOM.render(
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/signup" component={Signup} />
                 {/* <Route path="/dashboard" component={VisibleDashboard}/> */}
-                <Route exact path="/" component={LogIn} />                
+                <Route exact path="/" component={LogIn} />
+                <Route exact path="/forgotpassword" component={ForgotPassword} />            
             </Switch>
         </BrowserRouter>
     </Provider>,

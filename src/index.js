@@ -11,6 +11,7 @@ import reducers from './reducers';
 import LogIn from "./components/Login";
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
 import ForgotPassword from './components/ForgotPassword';
 
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -25,7 +26,8 @@ ReactDOM.render(
                 <Route exact path="/" component={LogIn} />                
                 {/* <Route path="/dashboard" component={VisibleDashboard}/> */}
                 {/* <Route exact path="/" component={LogIn} /> */}
-                <Route exact path="/forgotpassword" component={ForgotPassword} />            
+                <Route exact path="/forgotpassword" component={ForgotPassword} />   
+                <Route path="/admin" component={AdminDashboard}/> 
             </Switch>
         </BrowserRouter>
     </Provider>,

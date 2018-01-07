@@ -13,19 +13,6 @@ import { updateMyWallet } from "../actions";
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            wallet_id: '',
-            email: '',
-            realBalance: 0,
-            availableBalance: 0,
-            isLoggedIn: true,
-            trans: [],
-            isInSysTrans: false,
-            sysTrans: [],
-            sendTowallet_id: "",
-            sendNumCoin: 0,
-            errorSend: ""
-        }
     }
 
     componentWillMount() {
@@ -38,7 +25,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        const myState = this.state;
+        const myState = this.props.account;
         if (!myState.isLoggedIn) {
             return (
                 <Redirect to="/login" />
@@ -46,25 +33,37 @@ class Dashboard extends React.Component {
         }
         return (
             <div>
-                <Navbar wallet_id={myState.wallet_id} email={myState.email} onClickSignOut={null}/>
+                <Navbar address={myState.address} email={myState.email} onClickSignOut={null} />
                 <div className="container-fluid">
                     <div className="row" >
-                        <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null}/>
+                        <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null} />
                         <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3 px-4" style={{ marginTop: "5%" }}>
                             {(() => {
                                 if (!myState.isInSysTrans) {
                                     return (
                                         <div>
-                                            <h2 className="heading-bottom-top">Your balance&nbsp;
-                                            <i className="fa fa-usd"></i>
-                                            </h2>
-                                            <div className="wrapperBalance">
-                                                <h1 style={{ fontSize: "500%", fontWeight: "300" }}>{myState.availableBalance} kcoins</h1>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <h2 className="heading-bottom-top">Available balance&nbsp;
+                                                    <i className="fa fa-usd"></i></h2>
+                                                    <div className="wrapperBalance"  style={{ paddingTop: "10%"}}>
+                                                        <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.availBalance} kcoins</h1>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6" >
+                                                    <h2 className="heading-bottom-top">Total balance&nbsp;
+                                                    <i className="fa fa-usd"></i></h2>
+                                                    <div className="wrapperBalance" style={{ paddingTop: "10%"}}>
+                                                        <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.totalBalance} kcoins</h1>
+                                                    </div>
+                                                </div>
+
                                             </div>
+
                                             <h2 className="heading-bottom-top">Your transactions&nbsp;
                                             <i className="fa fa-retweet"></i>
                                             </h2>
-                                            <TransactionTable trans={myState.trans} myid={myState.wallet_id}/>
+                                            <TransactionTable trans={myState.transTable} myid={myState.address} />
                                         </div>
                                     );
                                 } else {
@@ -73,7 +72,7 @@ class Dashboard extends React.Component {
                                             <h2 className="heading-bottom-top">All transaction in system&nbsp;
                                             <i className="fa fa-retweet"></i>
                                             </h2>
-                                            <TransactionTable trans={myState.sysTrans} myid={myState.wallet_id}/>
+                                            <TransactionTable trans={myState.sysTrans} myid={myState.address} />
                                         </div>
                                     );
                                 }
@@ -101,7 +100,7 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="recipient-name" className="col-form-label font-weight-bold">No. of Coins:</label>
-                                        <Field type="number" name="sendNumCoin" className="form-control col-md-5" id="recipient-name" required min={1} max={myState.balance} value={0} component={InputText}/>
+                                        <Field type="number" name="sendNumCoin" className="form-control col-md-5" id="recipient-name" required min={1} max={myState.balance} value={0} component={InputText} />
                                     </div>
                                     <input type="submit" id="input-form-submit" style={{ display: 'none' }} />
                                 </form>
@@ -125,18 +124,18 @@ class Dashboard extends React.Component {
                                 </button>
                             </div>
                             <div className="modal-body">
-                                <div style={{marginLeft: 50}}>
+                                <div style={{ marginLeft: 50 }}>
                                     <div style={{ marginBottom: 25 }}>
-                                        Address: <span style={{fontWeight: 'bold', marginLeft: 10}}>{myState.wallet_id}</span>
+                                        Address: <span style={{ fontWeight: 'bold', marginLeft: 10 }}>{myState.address}</span>
                                     </div>
                                     <div style={{ marginBottom: 25 }}>
-                                        Email: <span style={{fontWeight: 'bold', marginLeft: 30}}>{myState.email}</span>
+                                        Email: <span style={{ fontWeight: 'bold', marginLeft: 30 }}>{myState.email}</span>
                                     </div>
                                     <div style={{ marginBottom: 25 }}>
-                                        Real balance: <span style={{fontWeight: 'bold', marginLeft: 54}}>{myState.realBalance}</span> kcoins
+                                        Total balance: <span style={{ fontWeight: 'bold', marginLeft: 54 }}>{myState.totalBalance}</span> kcoins
                                     </div>
                                     <div>
-                                        Available balance: <span style={{fontWeight: 'bold', marginLeft: 20}}>{myState.availableBalance}</span> kcoins
+                                        Available balance: <span style={{ fontWeight: 'bold', marginLeft: 20 }}>{myState.availBalance}</span> kcoins
                                     </div>
                                 </div>
                             </div>
@@ -156,14 +155,14 @@ Dashboard = reduxForm({
 })(Dashboard)
 
 const mapStateToProps = state => ({
-    state
+    account: state.account
 })
 
 const mapDispatchToProps = dispatch => ({
-    
+
 })
 
-Dashboard = 
+Dashboard =
     connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 
 export default Dashboard

@@ -5,11 +5,20 @@ import { connect } from "react-redux";
 
 import { Error } from "./smaller/warnings";
 import { InputText } from "./smaller/InputField";
-import { checkAccount } from '../actions';
+import { submitLogin, checkLogin } from '../actions';
 
 class LogIn extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(checkLogin())
+    }
 
     render() {
+        const myState = this.props.account;
+        if (myState.isLoggedIn) {
+            return (
+                <Redirect to="/dashboard"/>
+            );
+        }
         console.log(this.props);
         return (
             <div className="wrapperLogin">
@@ -19,7 +28,7 @@ class LogIn extends React.Component {
                     </div>
                     <div style={{ paddingtop: 30 }} className="card-body" >
                         <Error errMsg="" />
-                        <form id="loginform" className="form-horizontal">
+                        <form id="loginform" className="form-horizontal" onSubmit={this.props.handleSubmit}>
                             {/* Email */}
                             <label htmlFor="email" className="font-weight-bold">Email</label>
                             <div style={{ marginBottom: 25 }} className="input-group">
@@ -66,14 +75,13 @@ LogIn = reduxForm({
 })(LogIn);
 
 const mapStateToProps = state => ({
-    state
+    account: state.account
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    onSubmit: values => dispatch(submitLogin(values))
 })
 
-LogIn =
-    connect(mapStateToProps, mapDispatchToProps)(LogIn)
+LogIn = connect(mapStateToProps, mapDispatchToProps)(LogIn)
 
 export default LogIn

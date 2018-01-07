@@ -20,3 +20,4 @@ export const fetchDataFailure = () => {
 }
 
 export * from "./account"
+export * from "./trans"

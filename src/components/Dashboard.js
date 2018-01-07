@@ -8,7 +8,7 @@ import { TransactionTable } from "./smaller/transTable";
 import { Error } from "./smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "./smaller/InputField";
-import { updateMyWallet } from "../actions";
+import { updateMyWallet, getOwnTrans } from "../actions";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class Dashboard extends React.Component {
     componentWillMount() {
         // myState.isLoggedIn = fakeAuth.isAuthenticated;
         // myState.wallet_id = fakeAuth.wallet_id;
+        this.props.dispatch(getOwnTrans());
     }
 
     componentDidMount() {
@@ -31,6 +32,8 @@ class Dashboard extends React.Component {
                 <Redirect to="/login" />
             );
         }
+        const myTrans = this.props.trans;
+        console.log(myTrans);
         return (
             <div>
                 <Navbar address={myState.address} email={myState.email} onClickSignOut={null} />
@@ -63,7 +66,7 @@ class Dashboard extends React.Component {
                                             <h2 className="heading-bottom-top">Your transactions&nbsp;
                                             <i className="fa fa-retweet"></i>
                                             </h2>
-                                            <TransactionTable trans={myState.transTable} myid={myState.address} />
+                                            <TransactionTable trans={myTrans.transTable} address={myState.address} />
                                         </div>
                                     );
                                 } else {
@@ -155,7 +158,8 @@ Dashboard = reduxForm({
 })(Dashboard)
 
 const mapStateToProps = state => ({
-    account: state.account
+    account: state.account,
+    trans: state.trans
 })
 
 const mapDispatchToProps = dispatch => ({

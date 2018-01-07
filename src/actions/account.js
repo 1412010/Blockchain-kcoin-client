@@ -1,4 +1,4 @@
-import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS } from "../constants/index";
+import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
 
@@ -19,15 +19,10 @@ export const submitLogin = values => (dispatch, getState) => {
     }
 
     axios({
+        ...AXIOS_CONFIG,
         method: 'post',
         url: SERVER_URL + '/Login',
-        responseType: 'json',
         data: data,
-        withCredentials: true,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
     }).then(result => {
         console.log(result);
         dispatch(LoginSucess(result.data));
@@ -54,14 +49,9 @@ export const checkLogin = () => (dispatch, getState) => {
     console.log('check login');
 
     axios({
+        ...AXIOS_CONFIG,
         method: 'get',
         url: SERVER_URL + '/checkLogin',
-        responseType: 'json',
-        withCredentials: true,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
     }).then(result => {
         console.log(result);
         dispatch(LoginSucess(result.data));

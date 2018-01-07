@@ -8,7 +8,7 @@ import { InputText } from "./smaller/InputField";
 import { submitLogin, checkLogin } from '../actions';
 
 class LogIn extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.dispatch(checkLogin())
     }
 

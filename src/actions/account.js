@@ -1,6 +1,7 @@
-import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS  } from "../constants/";
+import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS  } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
+import { getOwnTrans } from "./index";
 
 const LoginSucess = data => ({
     type: REQUEST_LOGIN_SUCCESS,
@@ -34,6 +35,16 @@ const VerifyAccountFail = (error) => ({
 
 const LogoutSuccess = () => ({
     type: REQUEST_LOGOUT_SUCCESS
+})
+
+const sendCoinSuccess = (msg) => ({
+    type: REQUEST_SEND_COINS_SUCCESS,
+    msg
+})
+
+const sendCoinFail = (error) => ({
+    type: REQUEST_SEND_COINS_FAIL,
+    error
 })
 
 export const submitLogin = values => (dispatch, getState) => {
@@ -85,7 +96,7 @@ export const checkLogin = () => (dispatch, getState) => {
             console.log(error.response.data);
             console.log(error.response.status);
             // console.log(error.response.headers);
-            dispatch(LoginFail(error.response.data.message));
+            //dispatch(LoginFail(error.response.data.message));
         } else if (error.request) {
             // The request was made but no response was received
             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -169,4 +180,44 @@ export const submitSignUp = (values) => (dispatch, getState) => {
             console.log(error.request);
         }
     });
+}
+
+export const submitSendCoins = values => (dispatch, getState) => {
+    const account = getState().account;
+    if (values.toAddress === account.address) {
+        console.log('send coin to me');
+        return dispatch(sendCoinFail("You cannot send coins to yourself"))
+    }
+
+    var data = {
+        outputAddress: values.toAddress,
+        value: values.value
+    }
+    axios({
+        ...AXIOS_CONFIG,
+        method: 'post',
+        url: SERVER_URL + '/Transaction',
+        data: data,
+    }).then(result => {
+        console.log(result);
+        dispatch(sendCoinSuccess("Transaction initiate succesfully. Please verify you transaction to process."));
+        dispatch(getOwnTrans());
+        dispatch(checkLogin());
+    }).catch(error => {
+        // Error
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            // console.log(error.response.headers);
+            dispatch(sendCoinFail(error.response.data.message));
+        } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+        }
+    });
+
 }

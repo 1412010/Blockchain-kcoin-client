@@ -53,8 +53,9 @@ class AdminAllAccounts extends React.Component {
                                 return (
                                     <div>
                                         <h2 className="heading-bottom-top">All accounts&nbsp;
-                                            
+                                            <i className="fa fa-user"></i>
                                         </h2>
+                                        <TransactionTable addresses={this.props.allAccounts} />
                                     </div>
                                 );
                             })()}
@@ -69,6 +70,7 @@ class AdminAllAccounts extends React.Component {
 const mapStateToProps = state => ({
     account: state.account,
     trans: state.trans,
+    allAccounts: state.allAccounts
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -9,6 +9,7 @@ import { Error } from "../smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "../smaller/InputField";
 import { getAllAddresses, submitLogout, } from "../../actions";
+import { AddressTable } from "../smaller/addressTable";
 
 class AdminAllAddresses extends React.Component {
     constructor(props) {
@@ -53,8 +54,9 @@ class AdminAllAddresses extends React.Component {
                                 return (
                                     <div>
                                         <h2 className="heading-bottom-top">All addressses&nbsp;
-                                            
+                                            <i className="fa fa-address-card"></i>
                                         </h2>
+                                        <TransactionTable addresses={this.props.allAddresses} />
                                     </div>
                                 );
                             })()}
@@ -69,6 +71,7 @@ class AdminAllAddresses extends React.Component {
 const mapStateToProps = state => ({
     account: state.account,
     trans: state.trans,
+    allAddresses: state.allAddresses
 })
 
 const mapDispatchToProps = dispatch => ({

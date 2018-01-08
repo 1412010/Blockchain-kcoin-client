@@ -38,6 +38,13 @@ const initialStatisticsState = {
     sumAvailableBalance: 0
 }
 
+const initialAllAccountsState = {
+    email: "",
+    address: "",
+    realBalance: 0,
+    availableBalance: 0
+}
+
 const account = (state = initialAccountState, action) => {
     switch (action.type) {
 
@@ -114,6 +121,12 @@ const trans = (state = initialTransState, action) => {
                 transTable: action.data
             }
             break;
+        case 'REQUEST_ALL_TRANSACTION_SUCCESS':
+            return {
+                ...state,
+                transTable: action.data
+            }
+            break;
 
         default:
             return state
@@ -134,9 +147,25 @@ const statistics = (state = initialStatisticsState, action) => {
     }
 }
 
+const allAccounts = (state = initialAllAccountsState, action) => {
+    switch (action.type) {
+        case 'REQUEST_ALL_ACCOUNTS_SUCCESS':
+            return {
+                ...state,
+                email: action.data._email,
+                address: action.data._address,
+                realBalance: action.data._realBalance,
+                availableBalance: action.data._availableBalance
+            }
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     account,
     trans,
     statistics,
+    allAccounts,
     form: formReducer
 });

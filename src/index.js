@@ -11,9 +11,13 @@ import reducers from './reducers';
 import LogIn from "./components/Login";
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
-import AdminDashboard from './components/AdminDashboard';
+import AdminDashboard from './components/admin/AdminDashboard';
 import ForgotPassword from './components/ForgotPassword';
 import VerifyAccount from './components/VerifyAccount';
+import AdminAllAccounts from './components/admin/AdminAllAccounts';
+import AdminAllAddresses from './components/admin/AdminAllAddresses';
+import AdminAllTransactions from './components/admin/AdminAllTransactions';
+
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
@@ -28,7 +32,10 @@ ReactDOM.render(
                 {/* <Route path="/dashboard" component={VisibleDashboard}/> */}
                 {/* <Route exact path="/" component={LogIn} /> */}
                 <Route exact path="/forgotpassword" component={ForgotPassword} />   
-                <Route path="/admin" component={AdminDashboard}/> 
+                <Route exact path="/admin" component={AdminDashboard}/>
+                <Route exact path="/admin/allaccounts" component={AdminAllAccounts}/>
+                <Route exact path="/admin/alladdresses" component={AdminAllAddresses}/>
+                <Route exact path="/admin/alltransactions" component={AdminAllTransactions}/>
             </Switch>
         </BrowserRouter>
     </Provider>,

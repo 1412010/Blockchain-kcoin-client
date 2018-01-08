@@ -32,3 +32,25 @@ export const getOwnTrans = () => (dispatch, getState) => {
     })
 }
 
+const requestAllTransSuccess = data => ({
+    type: 'REQUEST_ALL_TRANSACTION_SUCCESS',
+    data
+})
+
+export const getAllTrans = () => (dispatch, getState) => {
+    axios({
+        ...AXIOS_CONFIG,
+        method: 'post',
+        data: '',
+        url: SERVER_URL + '/GetSystemTransactions'
+    }).then(result => {
+        dispatch(requestMyTransSuccess(result.data));
+    }).catch(error => {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+        } else if (error.request) {
+            console.log(error.request);
+        }
+    })
+}

@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
-import { AdminNavbar } from "./smaller/AdminNavbar";
-import { AdminSidebar } from "./smaller/AdminSidebar";
+import { Redirect, Link, BrowserRouter } from "react-router-dom";
+import { AdminNavbar } from "../smaller/AdminNavbar";
+import { AdminSidebar } from "../smaller/AdminSidebar";
 import axios from "axios";
-import { TransactionTable } from "./smaller/transTable";
-import { Error } from "./smaller/warnings";
+import { TransactionTable } from "../smaller/transTable";
+import { Error } from "../smaller/warnings";
 import { reduxForm, Field } from "redux-form";
-import { InputText } from "./smaller/InputField";
-import { getStatistics, submitLogout, } from "../actions";
+import { InputText } from "../smaller/InputField";
+import { getStatistics, submitLogout, } from "../../actions";
 
 class AdminDashboard extends React.Component {
     constructor(props) {
@@ -27,13 +27,20 @@ class AdminDashboard extends React.Component {
 
     render() {
         const myState = this.props.account;
-        if (myState.isLoggedIn || !myState.isAdmin) {
+        if (!myState.isLoggedIn) {
             return (
                 <Redirect to="/login" />
             );
         }
+        if (!myState.isAdmin) {
+            return (
+                <div>
+                    <h1>403 FORBIDDEN</h1>
+                    <h2>You are unauthorized</h2>
+                </div>
+            );
+        }
         const myStat = this.props.statistics;
-        const myTrans = this.props.trans;
 
         return (
             <div>
@@ -78,7 +85,6 @@ class AdminDashboard extends React.Component {
 
 const mapStateToProps = state => ({
     account: state.account,
-    trans: state.trans,
     statistics: state.statistics
 })
 

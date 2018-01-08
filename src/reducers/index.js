@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
-import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS } from "../constants/";
+import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL } from "../constants/";
+
 
 const initialAccountState = {
     email: '',
@@ -29,6 +30,12 @@ const initialTransState = {
     transTable: [],
     limit: 5,
     offset: 0
+}
+
+const initialStatisticsState = {
+    numberOfAcc: 0,
+    sumRealBalance: 0,
+    sumAvailableBalance: 0
 }
 
 const account = (state = initialAccountState, action) => {
@@ -113,8 +120,23 @@ const trans = (state = initialTransState, action) => {
     }
 }
 
+const statistics = (state = initialStatisticsState, action) => {
+    switch (action.type) {
+        case REQUEST_STATISTICS_SUCCESS:
+            return {
+                ...state,
+                numberOfAcc: action.data.numberOfAcc,
+                sumRealBalance: action.data.sumRealBalance,
+                sumAvailableBalance: action.data.sumAvailableBalance
+            }
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     account,
     trans,
+    statistics,
     form: formReducer
 });

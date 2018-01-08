@@ -14,7 +14,7 @@ export class AdminNavbar extends React.Component {
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-info">
                 <a className="navbar-brand ml-5 h1" href="#">
                     {/* <img src={""} width={30} height={30} className="d-inline-block align-top" alt={""} /> */}
-                    BLOCKCHAIN
+                    BLOCKCHAIN - ADMIN DASHBOARD
                     </a>
                 <span className="navbar-text">
                     Welcome, {this.state.walletId}!

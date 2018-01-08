@@ -1,3 +1,4 @@
+
 import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS  } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
@@ -180,6 +181,7 @@ export const submitSignUp = (values) => (dispatch, getState) => {
             console.log(error.request);
         }
     });
+
 }
 
 export const submitSendCoins = values => (dispatch, getState) => {
@@ -222,4 +224,5 @@ export const submitSendCoins = values => (dispatch, getState) => {
 }
 
 export const getNoOfAccount = () => (dispatch, getState) => {
+
 }

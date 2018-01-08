@@ -28,6 +28,7 @@ class AdminDashboard extends React.Component {
     render() {
         console.log(this.props);
         const myState = this.props.account;
+
         if (!myState.isLoggedIn) {
             return (
                 <Redirect to="/login" />

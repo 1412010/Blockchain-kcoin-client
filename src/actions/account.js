@@ -158,3 +158,7 @@ export const submitSignUp = (values) => (dispatch, getState) => {
         }
     });
 }
+
+
+export const getNoOfAccount = () => (dispatch, getState) => {
+}

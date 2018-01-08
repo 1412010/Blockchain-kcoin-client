@@ -3,14 +3,14 @@ import { Link, Redirect, Route } from "react-router-dom";
 import { Field, reduxForm } from 'redux-form';
 import { connect } from "react-redux";
 
-import { Error } from "./smaller/warnings";
+import { Error, Success } from "./smaller/warnings";
 import { InputText } from "./smaller/InputField";
-import { submitLogin, checkLogin } from '../actions';
+import { submitLogin, checkLogin, submitVerifyAccount } from '../actions';
 
 class VerifyAccount extends React.Component {
 
     render() {
-
+        const myState = this.props.account
         return (
             <div className="wrapperLogin">
                 <div className="card border-success mb-3" style={{ width: "30%" }}>
@@ -18,7 +18,8 @@ class VerifyAccount extends React.Component {
                         <h3 className="card-title">Verify Account</h3>
                     </div>
                     <div style={{ paddingtop: 30 }} className="card-body" >
-                        <Error errMsg="" />
+                        <Error errMsg= {myState.errorMsg_Verify}/>
+                        <Success errMsg= {myState.successMsg_Verify}/>                        
                         <form id="verifyAccForm" className="form-horizontal" onSubmit={this.props.handleSubmit}>
                             <label htmlFor="email" className="font-weight-bold">Please enter the code we have sent  to your email</label>
                             <div style={{ marginBottom: 25 }} className="input-group">
@@ -56,7 +57,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onSubmit: values => dispatch(submitLogin(values))
+    onSubmit: values => dispatch(submitVerifyAccount(values))
 })
 
 VerifyAccount = connect(mapStateToProps, mapDispatchToProps)(VerifyAccount)

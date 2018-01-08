@@ -21,8 +21,8 @@ class SignUp extends React.Component {
 
                     <div style={{ paddingtop: 30 }} className="card-body" >
 
-                        <Error errMsg={myState.errorMsg}/>
-                        <Success errMsg={myState.successMsg}/>
+                        <Error errMsg={myState.errorMsg_Signup}/>
+                        <Success errMsg={myState.successMsg_Signup}/>
                         <form id="formSignup" className="form-horizontal" onSubmit={this.props.handleSubmit}>
                             {/* Email */}
                             <label htmlFor="email" className="font-weight-bold">Your Email Address</label>

@@ -27,7 +27,7 @@ class LogIn extends React.Component {
                         <h3 className="card-title">Log in</h3>
                     </div>
                     <div style={{ paddingtop: 30 }} className="card-body" >
-                        <Error errMsg={myState.errorMsg} />
+                        <Error errMsg={myState.errorMsg_Login} />
                         <form id="loginform" className="form-horizontal" onSubmit={this.props.handleSubmit}>
                             {/* Email */}
                             <label htmlFor="email" className="font-weight-bold">Email</label>

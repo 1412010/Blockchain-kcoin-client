@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
-import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL } from "../constants/";
+import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS } from "../constants/";
 
 const initialAccountState = {
     email: '',
@@ -10,9 +10,17 @@ const initialAccountState = {
     availBalance: 0,
     isLoggedIn: false,
     isError: false,
-    errorMsg: '',
-    successMsg: '',
-    transTable: []
+}
+
+const messageState = {
+    errorMsg_Login: '',
+    successMsg_Login: '',
+    errorMsg_Verify: '',
+    successMsg_Verify: '',
+    errorMsg_Signup: '',
+    successMsg_Signup: '',
+    errorMsg_ForgotPW: '',
+    successMsg_ForgotPW: '',
 }
 
 const initialTransState = {
@@ -26,6 +34,7 @@ const account = (state = initialAccountState, action) => {
         case REQUEST_LOGIN_SUCCESS:
             return {
                 ...state,
+                ...messageState,
                 isLoggedIn: true,
                 email: action.data.email,
                 address: action.data.address,
@@ -37,24 +46,38 @@ const account = (state = initialAccountState, action) => {
         case REQUEST_LOGIN_FAIL:
             return {
                 ...state,
+                ...messageState,
                 isError: true,
-                errorMsg: action.error
+                errorMsg_Login: action.error
             }
         case REQUEST_SIGNUP_FAIL:
             return {
                 ...state,
-                errorMsg: action.error
+                ...messageState,
+                errorMsg_Signup: action.error
             }
-        case REQUEST_SIGNUP_SUCCESS: {
+        case REQUEST_SIGNUP_SUCCESS:
             return {
                 ...state,
-                errorMsg: "",
-                successMsg: "Sign up Successfully! Please verify your account!"
+                ...messageState,
+                successMsg_Signup: action.msg
             }
-        }
+        case REQUEST_VERIFY_ACCOUNT_SUCCESS:
+            return {
+                ...state,
+                ...messageState,
+                successMsg_Verify: action.msg
+            }
+        case REQUEST_VERIFY_ACCOUNT_FAIL:
+            return {
+                ...state,
+                ...messageState,
+                errorMsg_Verify: action.error
+            }
         default:
             return {
-                ...state
+                ...state,
+                ...messageState,
             }
     }
 }

@@ -8,7 +8,7 @@ import { TransactionTable } from "./smaller/transTable";
 import { Error } from "./smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "./smaller/InputField";
-import { updateMyWallet, getOwnTrans } from "../actions";
+import { updateMyWallet, getOwnTrans, submitLogout } from "../actions";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
         console.log(myTrans);
         return (
             <div>
-                <Navbar address={myState.address} email={myState.email} onClickSignOut={null} />
+                <Navbar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut} />
                 <div className="container-fluid">
                     <div className="row" >
                         <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null} />
@@ -163,7 +163,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-
+    onClickSignOut: () => dispatch(submitLogout())
 })
 
 Dashboard =

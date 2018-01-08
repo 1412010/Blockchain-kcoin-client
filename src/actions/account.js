@@ -1,4 +1,4 @@
-import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS  } from "../constants/";
+import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS  } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
 
@@ -30,6 +30,10 @@ const VerifyAccountSuccess = (msg) => ({
 const VerifyAccountFail = (error) => ({
     type: REQUEST_VERIFY_ACCOUNT_FAIL,
     error
+})
+
+const LogoutSuccess = () => ({
+    type: REQUEST_LOGOUT_SUCCESS
 })
 
 export const submitLogin = values => (dispatch, getState) => {
@@ -92,7 +96,15 @@ export const checkLogin = () => (dispatch, getState) => {
 }
 
 export const submitLogout = () => (dispatch, getState) => {
-    
+    console.log('sign out');
+    axios({
+        ...AXIOS_CONFIG,
+        method: 'get',
+        url: SERVER_URL + '/Logout',
+    }).then(result => {
+        console.log(result);
+        dispatch(LogoutSuccess());
+    })
 }
 
 export const submitVerifyAccount = (values) => (dispatch, getState) => {

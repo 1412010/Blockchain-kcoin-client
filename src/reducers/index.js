@@ -170,7 +170,7 @@ const allAddresses = (state = initialAllAddressesState, action) => {
         case 'REQUEST_ALL_ADDRESSES_SUCCESS':
             return {
                 ...state,
-                address: action.data._address,
+                address: action.data.address,
                 value: action.data.value
             }
         default:

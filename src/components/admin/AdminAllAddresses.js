@@ -8,7 +8,7 @@ import { TransactionTable } from "../smaller/transTable";
 import { Error } from "../smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "../smaller/InputField";
-import { getAllAccounts, submitLogout, } from "../../actions";
+import { getAllAddresses, submitLogout, } from "../../actions";
 
 class AdminAllAddresses extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class AdminAllAddresses extends React.Component {
     componentWillMount() {
         // myState.isLoggedIn = fakeAuth.isAuthenticated;
         // myState.wallet_id = fakeAuth.wallet_id;
-        this.props.dispatch(getAllAccounts());
+        this.props.dispatch(getAllAddresses());
     }
 
     componentDidMount() {

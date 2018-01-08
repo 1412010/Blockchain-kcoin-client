@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Link, BrowserRouter } from "react-router-dom";
+import { Redirect, Link, BrowserRouter, withRouter } from "react-router-dom";
 import { AdminNavbar } from "../smaller/AdminNavbar";
 import { AdminSidebar } from "../smaller/AdminSidebar";
 import axios from "axios";
@@ -18,50 +18,19 @@ class AdminAllAccounts extends React.Component {
     componentWillMount() {
         // myState.isLoggedIn = fakeAuth.isAuthenticated;
         // myState.wallet_id = fakeAuth.wallet_id;
-        this.props.dispatch(getAllAccounts());
-    }
-
-    componentDidMount() {
-        //this.props.dispatch(updateMyWallet());
+        //this.props.dispatch(getAllAccounts());
     }
 
     render() {
-        const myState = this.props.account;
-        if (!myState.isLoggedIn) {
-            return (
-                <Redirect to="/login" />
-            );
-        }
-        if (!myState.isAdmin) {
-            return (
-                <div>
-                    <h1>403 FORBIDDEN</h1>
-                    <h2>You are unauthorized</h2>
-                </div>
-            );
-        }
+        
         const myTrans = this.props.trans;
 
         return (
             <div>
-                <AdminNavbar />
-                <div className="container-fluid">
-                    <div className="row" >
-                        <AdminSidebar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut} />
-                        <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3 px-4" style={{ marginTop: "5%" }}>
-                            {(() => {
-                                return (
-                                    <div>
-                                        <h2 className="heading-bottom-top">All accounts&nbsp;
-                                            <i className="fa fa-user"></i>
-                                        </h2>
-                                        <TransactionTable addresses={this.props.allAccounts} />
-                                    </div>
-                                );
-                            })()}
-                        </main>
-                    </div>
-                </div>
+                <h2 className="heading-bottom-top">All accounts&nbsp;
+                 <i className="fa fa-user"></i>
+                </h2>
+                {/* <TransactionTable addresses={this.props.allAccounts} /> */}
             </div>
         );
     }
@@ -78,6 +47,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch
 })
 
-AdminAllAccounts = connect(mapStateToProps, mapDispatchToProps)(AdminAllAccounts)
+AdminAllAccounts = withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminAllAccounts))
 
 export default AdminAllAccounts

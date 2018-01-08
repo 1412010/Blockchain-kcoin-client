@@ -14,9 +14,8 @@ import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/admin/AdminDashboard';
 import ForgotPassword from './components/ForgotPassword';
 import VerifyAccount from './components/VerifyAccount';
-import AdminAllAccounts from './components/admin/AdminAllAccounts';
-import AdminAllAddresses from './components/admin/AdminAllAddresses';
-import AdminAllTransactions from './components/admin/AdminAllTransactions';
+import AdminMain from './components/admin/AdminMain';
+
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -26,16 +25,14 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/verifyAccount" component={VerifyAccount}/>
-                <Route path="/dashboard" component={Dashboard}/>
-                <Route exact path="/" component={LogIn} />                
+                <Route exact path="/verifyAccount" component={VerifyAccount} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route exact path="/forgotpassword" component={ForgotPassword} />
+                <Route path="/admin" component={AdminMain} />
+                <Route exact path="/" component={LogIn} />
                 {/* <Route path="/dashboard" component={VisibleDashboard}/> */}
                 {/* <Route exact path="/" component={LogIn} /> */}
-                <Route exact path="/forgotpassword" component={ForgotPassword} />   
-                <Route exact path="/admin" component={AdminDashboard}/>
-                <Route exact path="/admin/allaccounts" component={AdminAllAccounts}/>
-                <Route exact path="/admin/alladdresses" component={AdminAllAddresses}/>
-                <Route exact path="/admin/alltransactions" component={AdminAllTransactions}/>
+
             </Switch>
         </BrowserRouter>
     </Provider>,

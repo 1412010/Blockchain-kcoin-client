@@ -1,4 +1,4 @@
-import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS  } from "../constants/";
+import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_STATISTICS  } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
 
@@ -157,8 +157,4 @@ export const submitSignUp = (values) => (dispatch, getState) => {
             console.log(error.request);
         }
     });
-}
-
-
-export const getNoOfAccount = () => (dispatch, getState) => {
 }

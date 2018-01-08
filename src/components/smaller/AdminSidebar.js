@@ -3,7 +3,7 @@ export class AdminSidebar extends React.Component {
 
     render() {
         return (
-            <nav className="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+            <nav className="col-sm-3 col-md-2 d-none d-sm-block bg-dark sidebar">
                 <ul className="nav nav-pills flex-column">
                     <li className="nav-item">
                         <a className="nav-link active" href="#"><i className="fa fa-area-chart fa-lg" ></i>&nbsp;Statistics</a>

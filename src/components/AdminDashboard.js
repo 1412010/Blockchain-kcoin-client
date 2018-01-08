@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { Navbar } from "./smaller/navbar";
+import { AdminNavbar } from "./smaller/AdminNavbar";
 import { AdminSidebar } from "./smaller/AdminSidebar";
 import axios from "axios";
 import { TransactionTable } from "./smaller/transTable";
@@ -34,7 +34,7 @@ class AdminDashboard extends React.Component {
         const myTrans = this.props.trans;
         return (
             <div>
-                <Navbar />
+                <AdminNavbar />
                 <div className="container-fluid">
                     <div className="row" >
                         <AdminSidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null}/>
@@ -75,7 +75,7 @@ class AdminDashboard extends React.Component {
 
 const mapStateToProps = state => ({
     account: state.account,
-    trans: state.trans
+    trans: state.trans,
 })
 
 const mapDispatchToProps = dispatch => ({

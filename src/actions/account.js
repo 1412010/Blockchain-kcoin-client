@@ -219,5 +219,7 @@ export const submitSendCoins = values => (dispatch, getState) => {
             console.log(error.request);
         }
     });
+}
 
+export const getNoOfAccount = () => (dispatch, getState) => {
 }

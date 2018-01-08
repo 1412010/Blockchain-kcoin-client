@@ -222,7 +222,3 @@ export const submitSendCoins = values => (dispatch, getState) => {
         }
     });
 }
-
-export const getNoOfAccount = () => (dispatch, getState) => {
-
-}

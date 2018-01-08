@@ -8,7 +8,7 @@ import { TransactionTable } from "../smaller/transTable";
 import { Error } from "../smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "../smaller/InputField";
-import { getAllAccounts, submitLogout, } from "../../actions";
+import { getAllAccounts, submitLogout, getAllTrans } from "../../actions";
 
 class AdminAllTransactions extends React.Component {
     constructor(props) {

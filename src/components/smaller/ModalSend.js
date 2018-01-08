@@ -7,11 +7,6 @@ import { submitSendCoins } from "../../actions";
 
 class ModalSend extends React.Component {
 
-    onSubmitSendCoin = (e) => {
-        e.preventDefault();
-        alert('sendcoin');
-    }
-
     render() {
         const myState = this.props.account
         return (
@@ -36,12 +31,12 @@ class ModalSend extends React.Component {
                                     <label htmlFor="value" className="col-form-label font-weight-bold">Values:</label>
                                     <Field type="number" name="value" className="form-control col-md-5" id="value" required min={1} max={myState.availBalance} value={0} component={InputText} />
                                 </div>
-                                <input type="submit" id="input-form-submit" style={{ display: 'none' }} />
+                                <input type="submit" id="input-form-send" style={{ display: 'none' }} />
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal" ref={(input) => { this.closeModal = input; }}>Cancel</button>
-                            <label htmlFor="input-form-submit" role="button" className="btn btn-primary mt-2"> Send coins</label>
+                            <label htmlFor="input-form-send" role="button" className="btn btn-primary mt-2"> Send coins</label>
                         </div>
                     </div>
                 </div>

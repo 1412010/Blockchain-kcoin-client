@@ -14,6 +14,7 @@ export class TransactionTable extends React.Component {
                             <th scope="col">To</th>
                             <th scope="col">Values</th>
                             <th scope="col">State</th>
+                            <th scope="col"></th>
                             <th scope="col">Hash</th>
                         </tr>
                     </thead>
@@ -30,7 +31,14 @@ export class TransactionTable extends React.Component {
                                         <td>{item._outputAddress == this.props.address ? 'You' : item._outputAddress}</td>
                                         <td>{item._value}</td>
                                         <td>{item._state}</td>
-                                        <td>{item._hash}</td>                                        
+                                        <td>
+                                            {( () => {
+                                                
+                                            if (item._state === "KHỞI TẠO")
+                                                return (<button type="button" className="btn btn-danger" onClick={() => this.props.onClickDeleteTrans(item._id)}>Remove</button>)
+                                            })()}
+                                        </td>
+                                        <td>{item._hash}</td>
                                     </tr>
                                 );
                             })

@@ -7,8 +7,9 @@ import { TransactionTable } from "./smaller/transTable";
 import { Error, Success } from "./smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "./smaller/InputField";
-import { updateMyWallet, getOwnTrans, submitLogout, submitSendCoins, checkLogin } from "../actions";
+import { updateMyWallet, getOwnTrans, submitLogout, submitSendCoins, checkLogin, submitDeleteTrans } from "../actions";
 import ModalSend from "./smaller/ModalSend";
+import ModalVerify from "./smaller/ModalVerify";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -65,7 +66,7 @@ class Dashboard extends React.Component {
                                             <h2 className="heading-bottom-top">Your transactions&nbsp;
                                             <i className="fa fa-retweet"></i>
                                             </h2>
-                                            <TransactionTable trans={myTrans.transTable} address={myState.address} />
+                                            <TransactionTable trans={myTrans.transTable} address={myState.address} onClickDeleteTrans={this.props.onClickDeleteTrans}/>
                                         </div>
                                     );
                                 } else {
@@ -83,8 +84,10 @@ class Dashboard extends React.Component {
                     </div>
                 </div>
 
+                <ModalVerify/>
+
                 <ModalSend/>                            
-                
+
                 {/* <!-- Account Modal --> */}
                 <div className="modal fade" id="accountModal" tabIndex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg" role="document">
@@ -132,6 +135,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onClickSignOut: () => dispatch(submitLogout()),
+    onClickDeleteTrans: (id) => dispatch(submitDeleteTrans(id)),
     dispatch
 })
 

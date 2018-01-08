@@ -1,5 +1,5 @@
 
-import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS  } from "../constants/";
+import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS , REQUEST_VERIFY_TRANS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
 import { getOwnTrans } from "./index";
@@ -45,6 +45,16 @@ const sendCoinSuccess = (msg) => ({
 
 const sendCoinFail = (error) => ({
     type: REQUEST_SEND_COINS_FAIL,
+    error
+})
+
+const VerifyTransSuccess = (msg) => ({
+    type: REQUEST_VERIFY_TRANS_SUCCESS,
+    msg
+})
+
+const VerifyTransFail = (error) => ({
+    type: REQUEST_VERIFY_TRANS_FAIL,
     error
 })
 
@@ -221,4 +231,61 @@ export const submitSendCoins = values => (dispatch, getState) => {
             console.log(error.request);
         }
     });
+}
+
+export const submitVerifyTransaction = (values) => (dispatch, getState) => {
+    console.log('verify trans');
+    axios({
+        ...AXIOS_CONFIG,
+        method: 'post',
+        url: SERVER_URL + '/ConfirmTransaction',
+        data: { code: values.code }
+    }).then(result => {
+        console.log(result);
+        dispatch(VerifyTransSuccess("Verify Transaction successfully."));
+        dispatch(getOwnTrans());
+        dispatch(checkLogin());
+    }).catch(error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            // console.log(error.response.headers);
+            dispatch(VerifyTransFail(error.response.data.message));
+        } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+        }
+    })
+}
+
+export const submitDeleteTrans = id => (dispatch, getState) => {
+    axios({
+        ...AXIOS_CONFIG,
+        method: 'post',
+        url: SERVER_URL + '/DeleteTransaction',
+        data: { _id: id }
+    }).then(result => {
+        console.log(result);
+        //dispatch(VerifyTransSuccess("Verify Transaction successfully."));
+        dispatch(getOwnTrans());
+        dispatch(checkLogin());
+    }).catch(error => {
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            // console.log(error.response.headers);
+            dispatch(VerifyTransFail(error.response.data.message));
+        } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+        }
+    })
 }

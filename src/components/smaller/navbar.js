@@ -2,12 +2,6 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 export class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            walletId: props.walletId
-        }
-    }
 
     render() {
         return (
@@ -17,7 +11,7 @@ export class Navbar extends React.Component {
                     BLOCKCHAIN
                     </a>
                 <span className="navbar-text">
-                    Welcome, {this.state.walletId}!
+                    Welcome, {this.props.address}!
                     </span>
                 <ul className="navbar-nav mr-auto"></ul>
                 <ul className="navbar-nav mr-5">

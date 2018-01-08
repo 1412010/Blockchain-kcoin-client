@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
-import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL } from "../constants/";
+import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL } from "../constants/";
+
 
 const initialAccountState = {
     email: '',
@@ -21,6 +22,8 @@ const messageState = {
     successMsg_Signup: '',
     errorMsg_ForgotPW: '',
     successMsg_ForgotPW: '',
+    errorMsg_SendCoin: '',
+    successMsg_SendCoin: '',
 }
 
 const initialTransState = {
@@ -37,6 +40,7 @@ const initialStatisticsState = {
 
 const account = (state = initialAccountState, action) => {
     switch (action.type) {
+
         case REQUEST_LOGIN_SUCCESS:
             return {
                 ...state,
@@ -80,11 +84,25 @@ const account = (state = initialAccountState, action) => {
                 ...messageState,
                 errorMsg_Verify: action.error
             }
-        default:
+        case REQUEST_LOGOUT_SUCCESS:
+            return {
+                ...initialAccountState,
+                ...messageState
+            }
+        case REQUEST_SEND_COINS_FAIL:
             return {
                 ...state,
                 ...messageState,
+                errorMsg_SendCoin: action.error
             }
+        case REQUEST_SEND_COINS_SUCCESS:
+            return {
+                ...state,
+                ...messageState,
+                successMsg_SendCoin: action.msg
+            }
+        default:
+            return state
     }
 }
 

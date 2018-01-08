@@ -1,5 +1,6 @@
-import { REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_MY_TRANSACTION_FAIL, AXIOS_CONFIG, SERVER_URL } from "../constants/";
+import { REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_MY_TRANSACTION_FAIL, AXIOS_CONFIG, SERVER_URL, REQUEST_SEND_COINS_FAIL } from "../constants/";
 import axios from "axios";
+import values from "redux-form/lib/values";
 
 const requestMyTransSuccess = data => ({
     type: REQUEST_MY_TRANSACTION_SUCCESS,
@@ -30,3 +31,4 @@ export const getOwnTrans = () => (dispatch, getState) => {
         }
     })
 }
+

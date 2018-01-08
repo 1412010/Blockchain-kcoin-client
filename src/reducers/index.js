@@ -40,9 +40,13 @@ const initialStatisticsState = {
 
 const initialAllAccountsState = {
     email: "",
-    address: "",
     realBalance: 0,
     availableBalance: 0
+}
+
+const initialAllAddressesState = {
+    address: "",
+    value: 0
 }
 
 const account = (state = initialAccountState, action) => {
@@ -153,9 +157,21 @@ const allAccounts = (state = initialAllAccountsState, action) => {
             return {
                 ...state,
                 email: action.data._email,
-                address: action.data._address,
                 realBalance: action.data._realBalance,
                 availableBalance: action.data._availableBalance
+            }
+        default:
+            return state
+    }
+}
+
+const allAddresses = (state = initialAllAddressesState, action) => {
+    switch (action.type) {
+        case 'REQUEST_ALL_ADDRESSES_SUCCESS':
+            return {
+                ...state,
+                address: action.data._address,
+                value: action.data.value
             }
         default:
             return state
@@ -167,5 +183,6 @@ export default combineReducers({
     trans,
     statistics,
     allAccounts,
+    allAddresses,
     form: formReducer
 });

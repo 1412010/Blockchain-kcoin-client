@@ -13,7 +13,7 @@ import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import ForgotPassword from './components/ForgotPassword';
-
+import VerifyAccount from './components/VerifyAccount';
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
@@ -22,6 +22,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/signup" component={Signup} />
+                <Route exact path="/verifyAccount" component={VerifyAccount}/>
                 <Route path="/dashboard" component={Dashboard}/>
                 <Route exact path="/" component={LogIn} />                
                 {/* <Route path="/dashboard" component={VisibleDashboard}/> */}

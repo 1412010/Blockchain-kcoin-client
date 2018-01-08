@@ -5,10 +5,13 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from "react-redux";
 import { Error, Success } from "./smaller/warnings";
 import { InputText, InputCheckbox } from "./smaller/InputField";
+import { submitSignUp } from '../actions/';
 
 class SignUp extends React.Component {
 
     render() {
+        const myState = this.props.account
+        console.log(myState);
         return (
             <div className="wrapperSignUp">
                 <div className="card border-warning mb-3" style={{ width: "30%" }}>
@@ -18,9 +21,9 @@ class SignUp extends React.Component {
 
                     <div style={{ paddingtop: 30 }} className="card-body" >
 
-                        <Error errMsg=""/>
-                        <Success errMsg=""/>
-                        <form id="formSignup" className="form-horizontal">
+                        <Error errMsg={myState.errorMsg}/>
+                        <Success errMsg={myState.successMsg}/>
+                        <form id="formSignup" className="form-horizontal" onSubmit={this.props.handleSubmit}>
                             {/* Email */}
                             <label htmlFor="email" className="font-weight-bold">Your Email Address</label>
                             <div style={{ marginBottom: 25 }} className="input-group">
@@ -29,12 +32,12 @@ class SignUp extends React.Component {
                             {/* New Password */}
                             <label htmlFor="pw" className="font-weight-bold">Your New Password</label>
                             <div style={{ marginBottom: 25 }} className="input-group">
-                                <Field id="pw" type="password" component={InputText} name="password"  placeholder="Enter your password..." minLength={8} required={true}/>
+                                <Field id="pw" type="password" component={InputText} name="password"  placeholder="Enter your password..." minLength={6} required={true}/>
                             </div>
                             {/* Confirm Password */}
                             <label htmlFor="cfpw" className="font-weight-bold">Confirm your password</label>
                             <div style={{ marginBottom: 25 }} className="input-group">
-                                <Field id="cfpw" type="password" component={InputText} name="confirmPassword"  placeholder="Confirm your password..." minLength={8} required={true}/>
+                                <Field id="cfpw" type="password" component={InputText} name="confirmPassword"  placeholder="Confirm your password..." minLength={6} required={true}/>
                             </div>
                             {/* Checkbox of terms agreement */}
                             <div className="form-check">
@@ -71,11 +74,11 @@ SignUp = reduxForm({
 })(SignUp)
 
 const mapStateToProps = state => ({
-    state
+    account: state.account
 })
 
 const mapDispatchToProps = dispatch => ({
-    
+    onSubmit: values => dispatch(submitSignUp(values))
 })
 
 SignUp = 

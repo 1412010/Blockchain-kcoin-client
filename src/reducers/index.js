@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
-import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS } from "../constants/";
+import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL } from "../constants/";
 
 const initialAccountState = {
     email: '',
@@ -11,6 +11,7 @@ const initialAccountState = {
     isLoggedIn: false,
     isError: false,
     errorMsg: '',
+    successMsg: '',
     transTable: []
 }
 
@@ -35,12 +36,26 @@ const account = (state = initialAccountState, action) => {
             }
         case REQUEST_LOGIN_FAIL:
             return {
-                ...state, 
+                ...state,
                 isError: true,
-                errorMsg: action.err
+                errorMsg: action.error
             }
+        case REQUEST_SIGNUP_FAIL:
+            return {
+                ...state,
+                errorMsg: action.error
+            }
+        case REQUEST_SIGNUP_SUCCESS: {
+            return {
+                ...state,
+                errorMsg: "",
+                successMsg: "Sign up Successfully! Please verify your account!"
+            }
+        }
         default:
-            return state;
+            return {
+                ...state
+            }
     }
 }
 
@@ -52,7 +67,7 @@ const trans = (state = initialTransState, action) => {
                 transTable: action.data
             }
             break;
-    
+
         default:
             return state
     }

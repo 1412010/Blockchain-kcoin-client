@@ -1,5 +1,5 @@
 
-import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS , REQUEST_VERIFY_TRANS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS } from "../constants/";
+import { SERVER_URL, REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, AXIOS_CONFIG, REQUEST_SIGNUP_FAIL, REQUEST_SIGNUP_SUCCESS, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS , REQUEST_VERIFY_TRANS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS, REQUEST_FORGOT_PW_FAIL, REQUEST_FORGOT_PW_SUCCESS } from "../constants/";
 import axios from "axios";
 import "whatwg-fetch";
 import { getOwnTrans } from "./index";
@@ -41,6 +41,16 @@ const LogoutSuccess = () => ({
 const sendCoinSuccess = (msg) => ({
     type: REQUEST_SEND_COINS_SUCCESS,
     msg
+})
+
+const ForgotPWSuccess = (msg) => ({
+    type: REQUEST_FORGOT_PW_SUCCESS,
+    msg
+})
+
+const ForgotPWFail = (error) => ({
+    type: REQUEST_FORGOT_PW_FAIL,
+    error
 })
 
 const sendCoinFail = (error) => ({
@@ -191,7 +201,33 @@ export const submitSignUp = (values) => (dispatch, getState) => {
             console.log(error.request);
         }
     });
+}
 
+export const submitForgotPW = values => (dispatch, getState) => {
+    axios({
+        ...AXIOS_CONFIG,
+        method: 'post',
+        url: SERVER_URL + '/forgotPassword',
+        data: { email: values.email },
+    }).then(result => {
+        console.log(result);
+        dispatch(ForgotPWSuccess("Reset password successfully. We have sent a new password to your email."));
+    }).catch(error => {
+        // Error
+        if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            // console.log(error.response.headers);
+            dispatch(ForgotPWFail(error.response.data.message));
+        } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+        }
+    });
 }
 
 export const submitSendCoins = values => (dispatch, getState) => {

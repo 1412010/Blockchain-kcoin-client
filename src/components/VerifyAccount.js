@@ -29,13 +29,13 @@ class VerifyAccount extends React.Component {
                                 </div>
                             </div>
 
-                            {/* Button sign in */}
+                            {/* Button log in */}
                             <div className="form-group">
                                 <div className="col-md-12 control">
                                     <div >
-                                        Don't have an account?
-                                        <Link to="/signup">
-                                            &nbsp;Sign Up Here
+                                        Verified successfully?
+                                        <Link to="/login">
+                                            &nbsp;Log in here
                                         </Link>
                                     </div>
                                 </div>

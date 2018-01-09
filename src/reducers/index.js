@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
-import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS, REQUEST_VERIFY_TRANS_FAIL } from "../constants/";
+import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS, REQUEST_VERIFY_TRANS_FAIL, REQUEST_FORGOT_PW_SUCCESS, REQUEST_FORGOT_PW_FAIL } from "../constants/";
 
 
 const initialAccountState = {
@@ -122,6 +122,18 @@ const account = (state = initialAccountState, action) => {
                 ...state,
                 ...messageState,
                 errorMsg_VerifyTrans: action.error
+            }
+        case REQUEST_FORGOT_PW_SUCCESS:
+            return {
+                ...state,
+                ...messageState,
+                successMsg_ForgotPW: action.msg
+            }
+        case REQUEST_FORGOT_PW_FAIL:
+            return {
+                ...state,
+                ...messageState,
+                errorMsg_ForgotPW: action.error
             }
         default:
             return state

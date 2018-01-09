@@ -18,9 +18,6 @@ export class Sidebar extends React.Component {
                         <a className="nav-link" href="#" data-toggle="modal" data-target="#verifyModal"><i className="fa fa-check-circle fa-lg"></i>&nbsp;Verify Transaction</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#" onClick={this.props.onClickSysTrans}><i className="fa fa-exchange fa-lg"></i>&nbsp;Show all transaction</a>
-                    </li>
-                    <li className="nav-item">
                         <a className="nav-link" href="#" onClick={this.props.onClickSignOut}><i className="fa fa-power-off fa-lg"></i>&nbsp;Sign out</a>
                     </li>
                 </ul>

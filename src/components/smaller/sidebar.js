@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export class Sidebar extends React.Component {
 
     render() {
@@ -17,6 +18,15 @@ export class Sidebar extends React.Component {
                     <li className="nav-item">
                         <a className="nav-link" href="#" data-toggle="modal" data-target="#verifyModal"><i className="fa fa-check-circle fa-lg"></i>&nbsp;Verify Transaction</a>
                     </li>
+                    {(() => {
+                        if (this.props.isAdmin) {
+                            return (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/admin/dashboard"><i className="fa fa-arrow-circle-right fa-lg"></i>&nbsp;To admin dashboard</Link>
+                                </li>
+                            );
+                        }
+                    })()}
                     <li className="nav-item">
                         <a className="nav-link" href="#" onClick={this.props.onClickSignOut}><i className="fa fa-power-off fa-lg"></i>&nbsp;Sign out</a>
                     </li>

@@ -20,9 +20,9 @@ export class AccountTable extends React.Component {
                                 return (
                                     <tr key={index + 1}>
                                         <th scope="row">{index + 1}</th>
-                                        <td>{item.email}</td>
-                                        <td>{item.availableBalance}</td>  
-                                        <td>{item.realBalance}</td>                                    
+                                        <td>{item._email}</td>
+                                        <td>{item._availableBalance}</td>  
+                                        <td>{item._realBalance}</td>                                    
                                     </tr>
                                 );
                             })

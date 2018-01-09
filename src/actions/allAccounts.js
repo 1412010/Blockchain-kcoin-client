@@ -14,7 +14,6 @@ export const getAllAccounts = values => (dispatch, getState) => {
         data: '',
         url: SERVER_URL + '/GetAllAccounts'
     }).then(result => {
-        console.log(result.data);
         dispatch(requestAllAccounts(result.data));
     }).catch(error => {
         if (error.response) {
@@ -38,7 +37,6 @@ export const getAllAddresses = values => (dispatch, getState) => {
         data: '',
         url: SERVER_URL + '/GetAllAddressSystem'
     }).then(result => {
-        console.log(result.data);
         dispatch(requestAllAddresses(result.data));
     }).catch(error => {
         if (error.response) {

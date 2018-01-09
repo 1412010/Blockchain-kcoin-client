@@ -41,14 +41,11 @@ const initialStatisticsState = {
 }
 
 const initialAllAccountsState = {
-    email: "",
-    realBalance: 0,
-    availableBalance: 0
+    accountTable: []
 }
 
 const initialAllAddressesState = {
-    address: "",
-    value: 0
+    addressTable: []
 }
 
 const account = (state = initialAccountState, action) => {
@@ -170,9 +167,7 @@ const allAccounts = (state = initialAllAccountsState, action) => {
         case 'REQUEST_ALL_ACCOUNTS_SUCCESS':
             return {
                 ...state,
-                email: action.data._email,
-                realBalance: action.data._realBalance,
-                availableBalance: action.data._availableBalance
+                accountTable: action.data
             }
         default:
             return state
@@ -184,8 +179,7 @@ const allAddresses = (state = initialAllAddressesState, action) => {
         case 'REQUEST_ALL_ADDRESSES_SUCCESS':
             return {
                 ...state,
-                address: action.data.address,
-                value: action.data.value
+                addressTable: action.data
             }
         default:
             return state

@@ -4,7 +4,7 @@ import { Redirect, Link, BrowserRouter, withRouter } from "react-router-dom";
 import { AdminNavbar } from "../smaller/AdminNavbar";
 import { AdminSidebar } from "../smaller/AdminSidebar";
 import axios from "axios";
-import { TransactionTable } from "../smaller/transTable";
+import { AccountTable } from "../smaller/accountTable";
 import { Error } from "../smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "../smaller/InputField";
@@ -18,19 +18,18 @@ class AdminAllAccounts extends React.Component {
     componentWillMount() {
         // myState.isLoggedIn = fakeAuth.isAuthenticated;
         // myState.wallet_id = fakeAuth.wallet_id;
-        //this.props.dispatch(getAllAccounts());
+        this.props.dispatch(getAllAccounts());
     }
 
     render() {
-        
-        const myTrans = this.props.trans;
-
+        const allAccounts = this.props.allAccounts;
+        console.log("TỪ ALLACCOUNT " + JSON.stringify(allAccounts.accountTable));
         return (
             <div>
                 <h2 className="heading-bottom-top">All accounts&nbsp;
                  <i className="fa fa-user"></i>
                 </h2>
-                {/* <TransactionTable addresses={this.props.allAccounts} /> */}
+                <AccountTable accounts={allAccounts.accountTable} />
             </div>
         );
     }
@@ -38,7 +37,6 @@ class AdminAllAccounts extends React.Component {
 
 const mapStateToProps = state => ({
     account: state.account,
-    trans: state.trans,
     allAccounts: state.allAccounts
 })
 

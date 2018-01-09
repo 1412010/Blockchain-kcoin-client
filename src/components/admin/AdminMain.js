@@ -49,7 +49,7 @@ class AdminMain extends React.Component {
 
         return (
             <div>
-                <AdminNavbar onClickSignOut={this.props.onClickSignOut}/>
+                <AdminNavbar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut}/>
                 <div className="container-fluid">
                     <div className="row" >
                         <AdminSidebar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut} />
@@ -58,7 +58,7 @@ class AdminMain extends React.Component {
                                 <Route exact path="/admin/allAccounts" component={AdminAllAccounts} />
                                 <Route exact path="/admin/allAddresses" component={AdminAllAddresses} />
                                 <Route exact path="/admin/allTransactions" component={AdminAllTransactions} />
-                                <Route path="/" component={AdminDashboard} />
+                                <Route path="/admin" component={AdminDashboard} />
                             </Switch>
                         </main>
                     </div>

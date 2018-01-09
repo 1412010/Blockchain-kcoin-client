@@ -249,8 +249,8 @@ export const submitSendCoins = values => (dispatch, getState) => {
     }).then(result => {
         console.log(result);
         dispatch(sendCoinSuccess("Transaction initiate succesfully. Please verify you transaction to process."));
-        dispatch(getOwnTrans());
-        dispatch(checkLogin());
+        // dispatch(getOwnTrans());
+        // dispatch(checkLogin());
     }).catch(error => {
         // Error
         if (error.response) {
@@ -279,8 +279,8 @@ export const submitVerifyTransaction = (values) => (dispatch, getState) => {
     }).then(result => {
         console.log(result);
         dispatch(VerifyTransSuccess("Verify Transaction successfully."));
-        dispatch(getOwnTrans());
-        dispatch(checkLogin());
+        // dispatch(getOwnTrans());
+        // dispatch(checkLogin());
     }).catch(error => {
         if (error.response) {
             // The request was made and the server responded with a status code

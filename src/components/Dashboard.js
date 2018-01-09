@@ -18,9 +18,12 @@ class Dashboard extends React.Component {
     }
 
     componentWillMount() {
-        // myState.isLoggedIn = fakeAuth.isAuthenticated;
-        // myState.wallet_id = fakeAuth.wallet_id;
         this.props.dispatch(getOwnTrans());
+    }
+
+    onRefreshData = () => {
+        this.props.dispatch(checkLogin())
+        this.props.dispatch(getOwnTrans())
     }
 
     render() {
@@ -36,7 +39,7 @@ class Dashboard extends React.Component {
                 <Navbar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut} />
                 <div className="container-fluid">
                     <div className="row" >
-                        <Sidebar onClickSignOut={this.props.onClickSignOut} isAdmin={myState.isAdmin} />
+                        <Sidebar onClickSignOut={this.props.onClickSignOut} isAdmin={myState.isAdmin} onRefresh={this.onRefreshData}/>
                         <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3 px-4" style={{ marginTop: "5%" }}>
                             <Switch>
                                 <Route path="/dashboard/transaction/:hash" component={TransactionDetail} />
@@ -109,9 +112,6 @@ class Dashboard extends React.Component {
         );
     }
 }
-// Dashboard = reduxForm({
-//     form: 'formSendCoin'
-// })(Dashboard)
 
 const mapStateToProps = state => ({
     account: state.account,

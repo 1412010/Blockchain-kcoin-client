@@ -22,13 +22,7 @@ class AdminMain extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
-
-    componentDidMount() {
-        //this.props.dispatch(updateMyWallet());
-    }
-
+    
     render() {
         console.log(this.props);
         const myState = this.props.account;

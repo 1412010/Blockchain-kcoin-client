@@ -70,9 +70,9 @@ class LogIn extends React.Component {
                             <div className="form-group">
                                 <div className="col-md-12 control">
                                     <div  >
-                                        Account isn't activated yet? 
+                                        Account isn't verified yet? 
                                         <Link to="/verifyAccount">
-                                            &nbsp;Activate here
+                                            &nbsp;Verify here
                                         </Link>
                                     </div>
                                 </div>

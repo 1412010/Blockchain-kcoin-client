@@ -8,7 +8,7 @@ import { TransactionTable } from "../smaller/transTable";
 import { Error } from "../smaller/warnings";
 import { reduxForm, Field } from "redux-form";
 import { InputText } from "../smaller/InputField";
-import { getAllAccounts, submitLogout, getAllTrans } from "../../actions";
+import { getAllAccounts, submitLogout, getAllTrans, submitDeleteTrans } from "../../actions";
 
 class AdminAllTransactions extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class AdminAllTransactions extends React.Component {
 
         return (
             <div>
-                <TransactionTable trans={myTrans.transTable} address={myState.address} title="All transactions"/>
+                <TransactionTable trans={myTrans.transTable} address={myState.address} title="All transactions" onClickDeleteTrans={this.props.onClickDeleteTrans}/>
             </div>
         );
     }
@@ -41,6 +41,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onClickSignOut: () => dispatch(submitLogout()),
+    onClickDeleteTrans: (id) => dispatch(submitDeleteTrans(id)),
     dispatch
 })
 

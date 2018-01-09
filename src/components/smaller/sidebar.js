@@ -10,6 +10,9 @@ export class Sidebar extends React.Component {
                         <Link to="/dashboard" className="nav-link active"><i className="fa fa-home fa-lg" ></i>&nbsp;Dashboard</Link>
                     </li>
                     <li className="nav-item">
+                        <a className="nav-link" href="#" onClick={this.props.onRefresh}><i className="fa fa-refresh fa-lg" ></i>&nbsp;Refresh</a>
+                    </li>
+                    <li className="nav-item">
                         <a className="nav-link" href="#" data-toggle="modal" data-target="#accountModal"><i className="fa fa-user fa-lg" ></i>&nbsp;My account</a>
                     </li>
                     <li className="nav-item">

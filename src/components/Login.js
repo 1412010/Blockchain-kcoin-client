@@ -15,16 +15,16 @@ class LogIn extends React.Component {
     render() {
         const myState = this.props.account;
         console.log(this.props);        
-        if (myState.isLoggedIn && !myState.isAdmin) {
+        if (myState.isLoggedIn/* && !myState.isAdmin*/) {
             return (
                 <Redirect to="/dashboard"/>
             );
         }
-        if (myState.isLoggedIn && myState.isAdmin) {
+        /*if (myState.isLoggedIn && myState.isAdmin) {
             return (
                 <Redirect to="/admin"/>
             );
-        }
+        }*/
         return (
             <div className="wrapperLogin">
                 <div className="card border-success mb-3" style={{ width: "30%" }}>

@@ -39,7 +39,7 @@ class Dashboard extends React.Component {
                 <Navbar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut} />
                 <div className="container-fluid">
                     <div className="row" >
-                        <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null} />
+                        <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null} isAdmin={myState.isAdmin}/>
                         <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3 px-4" style={{ marginTop: "5%" }}>
                             {(() => {
                                 if (!myState.isInSysTrans) {

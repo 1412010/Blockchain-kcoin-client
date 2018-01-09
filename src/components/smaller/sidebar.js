@@ -22,7 +22,7 @@ export class Sidebar extends React.Component {
                         if (this.props.isAdmin) {
                             return (
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/admin"><i className="fa fa-arrow-circle-right fa-lg"></i>&nbsp;To admin dashboard</Link>
+                                    <Link className="nav-link" to="/admin/dashboard"><i className="fa fa-arrow-circle-right fa-lg"></i>&nbsp;To admin dashboard</Link>
                                 </li>
                             );
                         }

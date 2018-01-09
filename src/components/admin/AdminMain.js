@@ -58,7 +58,7 @@ class AdminMain extends React.Component {
                                 <Route exact path="/admin/allAccounts" component={AdminAllAccounts} />
                                 <Route exact path="/admin/allAddresses" component={AdminAllAddresses} />
                                 <Route exact path="/admin/allTransactions" component={AdminAllTransactions} />
-                                <Route path="/admin" component={AdminDashboard} />
+                                <Route path="/admin/dashboard" component={AdminDashboard} />
                             </Switch>
                         </main>
                     </div>

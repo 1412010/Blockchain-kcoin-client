@@ -41,52 +41,34 @@ class Dashboard extends React.Component {
                     <div className="row" >
                         <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null} />
                         <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3 px-4" style={{ marginTop: "5%" }}>
-                            {(() => {
-                                if (!myState.isInSysTrans) {
-                                    return (
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <h2 className="heading-bottom-top">Available balance&nbsp;
+                            <div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <h2 className="heading-bottom-top">Available balance&nbsp;
                                                     <i className="fa fa-usd"></i></h2>
-                                                    <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
-                                                        <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.availBalance} kcoins</h1>
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-6" >
-                                                    <h2 className="heading-bottom-top">Total balance&nbsp;
+                                        <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
+                                            <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.availBalance} kcoins</h1>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6" >
+                                        <h2 className="heading-bottom-top">Total balance&nbsp;
                                                     <i className="fa fa-usd"></i></h2>
-                                                    <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
-                                                        <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.totalBalance} kcoins</h1>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <h2 className="heading-bottom-top">Your transactions&nbsp;
-                                            <i className="fa fa-retweet"></i>
-                                            </h2>
-                                            <TransactionTable trans={myTrans.transTable} address={myState.address} onClickDeleteTrans={this.props.onClickDeleteTrans}/>
+                                        <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
+                                            <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.totalBalance} kcoins</h1>
                                         </div>
-                                    );
-                                } else {
-                                    return (
-                                        <div>
-                                            <h2 className="heading-bottom-top">All transaction in system&nbsp;
-                                            <i className="fa fa-retweet"></i>
-                                            </h2>
-                                            <TransactionTable trans={myState.sysTrans} myid={myState.address} />
-                                        </div>
-                                    );
-                                }
-                            })()}
+                                    </div>
+
+                                </div>
+
+                                <TransactionTable trans={myTrans.transTable} address={myState.address} onClickDeleteTrans={this.props.onClickDeleteTrans} title="Your transactions"/>
+                            </div>
                         </main>
                     </div>
                 </div>
 
-                <ModalVerify/>
+                <ModalVerify />
 
-                <ModalSend/>                            
+                <ModalSend />
 
                 {/* <!-- Account Modal --> */}
                 <div className="modal fade" id="accountModal" tabIndex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">

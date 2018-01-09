@@ -28,10 +28,7 @@ class AdminAllTransactions extends React.Component {
 
         return (
             <div>
-                <h2 className="heading-bottom-top">All transactions&nbsp;
-                 <i className="fa fa-retweet"></i>
-                </h2>
-                <TransactionTable trans={myTrans.transTable} myid={myState.address} />
+                <TransactionTable trans={myTrans.transTable} address={myState.address} title="All transactions"/>
             </div>
         );
     }

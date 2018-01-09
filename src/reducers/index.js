@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
-import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS, REQUEST_VERIFY_TRANS_FAIL, REQUEST_FORGOT_PW_SUCCESS, REQUEST_FORGOT_PW_FAIL } from "../constants/";
+import { REQUEST_LOGIN_FAIL, REQUEST_LOGIN_SUCCESS, REQUEST_MY_TRANSACTION_SUCCESS, REQUEST_SIGNUP_SUCCESS, REQUEST_SIGNUP_FAIL, REQUEST_VERIFY_ACCOUNT_FAIL, REQUEST_VERIFY_ACCOUNT_SUCCESS, REQUEST_LOGOUT_SUCCESS, REQUEST_SEND_COINS_FAIL, REQUEST_SEND_COINS_SUCCESS, REQUEST_STATISTICS_SUCCESS, REQUEST_STATISTICS_FAIL, REQUEST_VERIFY_TRANS_SUCCESS, REQUEST_VERIFY_TRANS_FAIL, REQUEST_FORGOT_PW_SUCCESS, REQUEST_FORGOT_PW_FAIL, REQUEST_GET_TRANSACTION_DETAIL } from "../constants/";
 
 
 const initialAccountState = {
@@ -30,8 +30,7 @@ const messageState = {
 
 const initialTransState = {
     transTable: [],
-    limit: 5,
-    offset: 0
+    transDetail: {}
 }
 
 const initialStatisticsState = {
@@ -154,7 +153,11 @@ const trans = (state = initialTransState, action) => {
                 transTable: action.data
             }
             break;
-
+        case REQUEST_GET_TRANSACTION_DETAIL: 
+            return {
+                ...state,
+                transDetail: action.data
+            }
         default:
             return state
     }

@@ -1,15 +1,15 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 export class Navbar extends React.Component {
 
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
-                <a className="navbar-brand ml-5 h1" href="#">
+                <Link className="navbar-brand ml-5 h1" to="/dashboard">
                     {/* <img src={""} width={30} height={30} className="d-inline-block align-top" alt={""} /> */}
                     BLOCKCHAIN
-                    </a>
+                    </Link>
                 <span className="navbar-text">
                     Welcome, {this.props.address}!
                     </span>

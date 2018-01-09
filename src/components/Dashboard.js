@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, withRouter, Switch, Route } from "react-router-dom";
 import { Navbar } from "./smaller/navbar";
 import { Sidebar } from "./smaller/sidebar";
 import { TransactionTable } from "./smaller/transTable";
@@ -10,6 +10,7 @@ import { InputText } from "./smaller/InputField";
 import { updateMyWallet, getOwnTrans, submitLogout, submitSendCoins, checkLogin, submitDeleteTrans } from "../actions";
 import ModalSend from "./smaller/ModalSend";
 import ModalVerify from "./smaller/ModalVerify";
+import TransactionDetail from "./smaller/transDetail"
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -20,10 +21,6 @@ class Dashboard extends React.Component {
         // myState.isLoggedIn = fakeAuth.isAuthenticated;
         // myState.wallet_id = fakeAuth.wallet_id;
         this.props.dispatch(getOwnTrans());
-    }
-
-    componentDidMount() {
-        //this.props.dispatch(updateMyWallet());
     }
 
     render() {
@@ -39,29 +36,35 @@ class Dashboard extends React.Component {
                 <Navbar address={myState.address} email={myState.email} onClickSignOut={this.props.onClickSignOut} />
                 <div className="container-fluid">
                     <div className="row" >
-                        <Sidebar onClickSysTrans={null} onClickNotSysTrans={null} onClickSignOut={null} isAdmin={myState.isAdmin}/>
+                        <Sidebar onClickSignOut={this.props.onClickSignOut} isAdmin={myState.isAdmin} />
                         <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3 px-4" style={{ marginTop: "5%" }}>
-                            <div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <h2 className="heading-bottom-top">Available balance&nbsp;
+                            <Switch>
+                                <Route path="/dashboard/transaction/:hash" component={TransactionDetail} />
+                                <Route exact path="/dashboard" render={() =>
+                                    <div>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <h2 className="heading-bottom-top">Available balance&nbsp;
                                                     <i className="fa fa-usd"></i></h2>
-                                        <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
-                                            <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.availBalance} kcoins</h1>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6" >
-                                        <h2 className="heading-bottom-top">Total balance&nbsp;
+                                                <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
+                                                    <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.availBalance} kcoins</h1>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6" >
+                                                <h2 className="heading-bottom-top">Total balance&nbsp;
                                                     <i className="fa fa-usd"></i></h2>
-                                        <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
-                                            <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.totalBalance} kcoins</h1>
+                                                <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
+                                                    <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myState.totalBalance} kcoins</h1>
+                                                </div>
+                                            </div>
+
                                         </div>
+
+                                        <TransactionTable trans={myTrans.transTable} address={myState.address} onClickDeleteTrans={this.props.onClickDeleteTrans} title="Your transactions" />
                                     </div>
+                                } />
+                            </Switch>
 
-                                </div>
-
-                                <TransactionTable trans={myTrans.transTable} address={myState.address} onClickDeleteTrans={this.props.onClickDeleteTrans} title="Your transactions"/>
-                            </div>
                         </main>
                     </div>
                 </div>

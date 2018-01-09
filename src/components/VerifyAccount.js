@@ -24,8 +24,8 @@ class VerifyAccount extends React.Component {
                             <label htmlFor="email" className="font-weight-bold">Please enter the code we have sent  to your email</label>
                             <div style={{ marginBottom: 25 }} className="input-group">
                                 <Field name='code' type='text' component={InputText} placeholder='Enter the code...' id='code' required={true} />
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-success" type="submit">Verify</button>
+                                <div className="input-group-append">
+                                    <button className="btn btn-outline-success" type="submit">Verify</button>
                                 </div>
                             </div>
 

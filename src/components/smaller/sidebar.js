@@ -7,7 +7,7 @@ export class Sidebar extends React.Component {
             <nav className="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
                 <ul className="nav nav-pills flex-column">
                     <li className="nav-item">
-                        <a className="nav-link active" href="#" onClick={this.props.onClickNotSysTrans}><i className="fa fa-home fa-lg" ></i>&nbsp;Dashboard</a>
+                        <Link to="/dashboard" className="nav-link active"><i className="fa fa-home fa-lg" ></i>&nbsp;Dashboard</Link>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#" data-toggle="modal" data-target="#accountModal"><i className="fa fa-user fa-lg" ></i>&nbsp;My account</a>

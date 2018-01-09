@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export class TransactionTable extends React.Component {
     constructor(props) {
         super(props)
@@ -113,8 +113,8 @@ export class TransactionTable extends React.Component {
                                         <tr key={index + 1}>
                                             <th scope="row">{index + 1}</th>
                                             <td>{strTime}</td>
-                                            <td>{item._inputAddress == this.props.address ? 'You' : item._inputAddress}</td>
-                                            <td>{item._outputAddress == this.props.address ? 'You' : item._outputAddress}</td>
+                                            <td>{item._inputAddress == this.props.address ? 'You' : item._inputAddress == "" ? "External address" : item._inputAddress}</td>
+                                            <td>{item._outputAddress == this.props.address ? 'You' : item._outputAddress == "" ? "External address" : item._outputAddress}</td>
                                             <td>{item._value}</td>
                                             <td>{item._state}</td>
                                             <td>
@@ -124,7 +124,7 @@ export class TransactionTable extends React.Component {
                                                         return (<button type="button" className="btn btn-danger" onClick={() => this.props.onClickDeleteTrans(item._id)}>Remove</button>)
                                                 })()}
                                             </td>
-                                            <td>{item._hash}</td>
+                                            <td><Link to={"/dashboard/transaction/" + item._hash}>{item._hash}</Link></td>
                                         </tr>
                                     );
                                 })

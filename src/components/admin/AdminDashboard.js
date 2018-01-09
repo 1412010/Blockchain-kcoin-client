@@ -28,7 +28,7 @@ class AdminDashboard extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-6" >
-                        <h2 className="heading-bottom-top">Total real balance&nbsp;
+                        <h2 className="heading-bottom-top">Total balance&nbsp;
                             <i className="fa fa-usd"></i></h2>
                         <div className="wrapperBalance" style={{ paddingTop: "10%" }}>
                             <h1 style={{ fontSize: "400%", fontWeight: "300" }}>{myStat.sumRealBalance} kcoins</h1>

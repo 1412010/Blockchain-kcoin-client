@@ -18,6 +18,9 @@ export class AdminSidebar extends React.Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/admin/allAddresses"><i className="fa fa-address-card fa-lg"></i>&nbsp;Addresses</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/dashboard"><i className="fa fa-arrow-circle-left fa-lg"></i>&nbsp;Return to site</Link>
+                    </li>
                 </ul>
             </nav >
         );

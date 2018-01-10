@@ -22,10 +22,10 @@ class ModalSend extends React.Component {
                         <div className="modal-body">
                             <form id='formSendCoin' onSubmit={this.props.handleSubmit}>
                                 <Error errMsg={myState.errorMsg_SendCoin} />
-                                <Success errMsg={myState.successMsg_SendCoin}/>
+                                <Success errMsg={myState.successMsg_SendCoin} />
                                 <div className="form-group">
                                     <label htmlFor="toAddress" className="col-form-label font-weight-bold">To address:</label>
-                                    <Field type="text" name="toAddress" id="toAddress" required component={InputText} />
+                                    <Field type="text" name="toAddress" id="toAddress" required component={InputText} minLength={64} maxLength={64} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="value" className="col-form-label font-weight-bold">Values:</label>
@@ -35,8 +35,8 @@ class ModalSend extends React.Component {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal" ref={(input) => { this.closeModal = input; }}>Cancel</button>
                             <label htmlFor="input-form-send" role="button" className="btn btn-primary mt-2"> Send coins</label>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" ref={(input) => { this.closeModal = input; }}>Cancel</button>
                         </div>
                     </div>
                 </div>

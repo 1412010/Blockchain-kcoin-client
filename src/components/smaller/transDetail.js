@@ -28,7 +28,7 @@ class TransactionDetail extends React.Component {
                 </h3>
                 {
                     transDetail.inputs.map((item, index) => {
-                        return (<p>#{index + 1}:   {item.referencedOutputHash}<p>Index: {item.referencedOutputIndex}</p></p>)
+                        return (<p>#{index}:   {item.referencedOutputHash}<p>Index: {item.referencedOutputIndex}</p></p>)
                     })
                 }
                 <br/>
@@ -37,7 +37,7 @@ class TransactionDetail extends React.Component {
                 </h3>
                 {
                     transDetail.outputs.map((item, index) => {
-                        return (<p>#{index + 1}: <strong>{item.value}</strong> to {item.lockScript.split(' ')[1]}</p>)
+                        return (<p>#{index}: <strong>{item.value}</strong> to {item.lockScript.split(' ')[1]}</p>)
                     })
                 }
             </div>

@@ -153,10 +153,14 @@ const trans = (state = initialTransState, action) => {
                 transTable: action.data
             }
             break;
-        case REQUEST_GET_TRANSACTION_DETAIL: 
+        case REQUEST_GET_TRANSACTION_DETAIL:
             return {
                 ...state,
                 transDetail: action.data
+            }
+        case REQUEST_LOGOUT_SUCCESS:
+            return {
+                ...initialTransState
             }
         default:
             return state

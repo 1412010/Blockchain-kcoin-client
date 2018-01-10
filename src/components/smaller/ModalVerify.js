@@ -24,17 +24,21 @@ class ModalVerify extends React.Component {
                             <form id='formVerifyTrans' onSubmit={this.props.handleSubmit}>
                                 <Error errMsg={myState.errorMsg_VerifyTrans} />
                                 <Success errMsg={myState.successMsg_VerifyTrans} />
-                                <label className="col-form-label">Please enter the code of the transaction that we have sent to your email to verify it.</label>                                
+                                <label className="col-form-label">Please enter the code of the transaction that we have sent to your email to verify it.</label>
                                 <div className="form-group">
                                     <label htmlFor="code" className="col-form-label font-weight-bold">Verify code:</label>
-                                    <Field type="text" name="code" id="code" minLength={10} required component={InputText} />
+                                    <Field type="text" name="code" id="code" minLength={8} required component={InputText} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="pwAgain" className="col-form-label font-weight-bold">Your Account Password:</label>
+                                    <Field type="password" id="pwAgain" name="pwAgain" minLength={6} required component={InputText} />
                                 </div>
                                 <input type="submit" id="input-form-submit-verify-trans" style={{ display: 'none' }} />
                             </form>
                         </div>
                         <div className="modal-footer">
+                            <label htmlFor="input-form-submit-verify-trans" role="button" className="btn btn-primary mt-2"> Submit</label>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal" ref={(input) => { this.closeModal = input; }}>Cancel</button>
-                            <label htmlFor="input-form-submit-verify-trans" role="button" className="btn btn-primary mt-2"> Submit coins</label>
                         </div>
                     </div>
                 </div>

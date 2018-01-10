@@ -271,11 +271,12 @@ export const submitSendCoins = values => (dispatch, getState) => {
 
 export const submitVerifyTransaction = (values) => (dispatch, getState) => {
     console.log('verify trans');
+    console.log(values.pwAgain)
     axios({
         ...AXIOS_CONFIG,
         method: 'post',
         url: SERVER_URL + '/ConfirmTransaction',
-        data: { code: values.code }
+        data: { code: values.code, password:  values.pwAgain }
     }).then(result => {
         console.log(result);
         dispatch(VerifyTransSuccess("Verify Transaction successfully."));

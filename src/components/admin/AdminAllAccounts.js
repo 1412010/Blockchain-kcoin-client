@@ -26,9 +26,6 @@ class AdminAllAccounts extends React.Component {
         console.log("TỪ ALLACCOUNT " + JSON.stringify(allAccounts.accountTable));
         return (
             <div>
-                <h2 className="heading-bottom-top">All accounts&nbsp;
-                 <i className="fa fa-user"></i>
-                </h2>
                 <AccountTable accounts={allAccounts.accountTable} />
             </div>
         );

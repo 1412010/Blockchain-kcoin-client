@@ -1,4 +1,4 @@
-export const SERVER_URL = 'http://localhost:5000'
+export const SERVER_URL = ''//'http://localhost:5000'//'https://blockchain-kcoin-hat.herokuapp.com'
 
 export const AXIOS_CONFIG = {
     method: 'get',

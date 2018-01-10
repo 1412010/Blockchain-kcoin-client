@@ -7,11 +7,11 @@ export class Navbar extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
                 <Link className="navbar-brand ml-5 h1" to="/dashboard">
-                    {/* <img src={""} width={30} height={30} className="d-inline-block align-top" alt={""} /> */}
+                    <img src="https://png.icons8.com/color/50/000000/xbox-b.png" width={30} height={30} className="d-inline-block align-top"/>
                     BLOCKCHAIN
                     </Link>
                 <span className="navbar-text">
-                    Welcome, {this.props.address}!
+                    Welcome!
                     </span>
                 <ul className="navbar-nav mr-auto"></ul>
                 <ul className="navbar-nav mr-5">
